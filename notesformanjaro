@@ -1,0 +1,121 @@
+how to know my ip:
+	nmcli device show | grep IP4.ADDRESS
+************************* PACMAN *********************
+
+Gestor de paquetes por defecto para arch.
+
+Lo primero que vamos a hacer es ver cómo buscar nuevas 
+versiones de la base de datos de paquetes del sistema. 
+El gestor de paquetes leerá el fichero «pacman.conf», 
+y buscará allí nuevas versiones de esta base de datos 
+para copiarla al PC.
+	sudo pacman -Syy
+El parámetro «-S» se encarga de sincronizar los paquetes, 
+la primera «y» descarga la base de datos de paquetes 
+actualizada, y la segunda «y» fuerza la descarga, incluso 
+si ya está al día.
+/////////////////////////////////////////////////////////
+Una vez que tenemos la base de datos de paquetes bajada 
+y sincronizada con nuestro PC, lo siguiente que podemos 
+hacer es actualizar todo nuestro sistema.
+	pacman -Syu
+/////////////////////////////////////////////////////////
+actualizar uno de los programas o paquetes
+	pacman -S paquete
+/////////////////////////////////////////////////////////
+Buscar un programa
+	pacman -Ss paquete
+/////////////////////////////////////////////////////////
+Pacman también nos va a permitir buscar un paquete concreto 
+dentro de los repositorios, si ya conocemos su nombre, para 
+ver todos los detalles de este, así como sus dependencias
+	pacman -Si paquete
+/////////////////////////////////////////////////////////
+Instalar un programa
+	sudo pacman -S paquete
+Desinstalar un programa
+	sudo pacman -R paquete
+Ver los detalles de un programa instalado
+	pacman -Qi paquete
+Reinstalar todos los paquetes
+	pacman -Qnq | pacman -S -
+Ver todos los paquetes y programas instalados
+	pacman -Q
+//////////////////////////////////////////////////////////
+Limpiar el sistema
+A medida que vamos usando el gestor de paquetes, este va 
+ocupando más y más espacio en nuestro sistema. Y a la larga 
+podemos notar que este va lento. Por lo tanto, nunca está 
+de más hacer una limpieza para borrar toda la caché, los 
+archivos temporales y los archivos basura que hayan quedado 
+en nuestro PC.
+	sudo pacman -Scc
+
+*************************** PAMAC ***********************
+
+Pamac es una herramienta gráfica para administrar los paquetes.
+
+update packages:	pamac update -a
+check update:		pamac checkupdates -a
+
+**************************** OTHER ***********************
+
+Night light:		redshift -O 3500
+
+
+
+******************************************************************
+1. Clean package cache
+Pacman, a package manager of Arch Linux, stores all downloaded 
+packages in /var/cache/pacman/pkg/ and it does not remove the 
+old or uninstalled versions automatically. You might think this 
+is a mistake, but this is done deliberately. This allows downgrading 
+a package without the need to retrieve the previous version through 
+the Arch Linux Archive. Or if you uninstall a program, you can easily 
+reinstall it without a new download. If you have a slow internet 
+connection, this may be useful. For example, you can simply install 
+a package from this directory using the command below.
+
+sudo pacman -U /var/cache/pacman/pkg/packagename
+Ver cuanto espacio ocupa:
+du -sh /var/cache/pacman/pkg/
+sudo pacman -Scc
+
+
+3. Clean the cache in your /home directory
+
+sudo du -sh ~/.cache/
+rm -rf ~/.cache/*
+
+
+Ver todas las dependencias de una package:
+pactree filezilla
+
+With a parameters:
+pactree -d 1 filezilla
+
+only remove package
+sudo pacman -R filezilla
+
+With its dependecies
+sudo pacman -Rcns filezilla
+
+2. Remove unused packages (orphans)
+Removing Packages that Don’t Depend on Other Packages
+Show :
+pacman -Qdtq
+Delete:
+sudo pacman -R $(pacman -Qdtq)
+
+
+
+sudo modprobe -a vmw_vmci vmmon 
+sudo systemctl enable --now vmware-networks
+https://www.systemconf.com/2019/01/03/generate-cisco-iourc-license-key-on-gns3-vm-using-python-3/
+https://gist.github.com/PurpleVibe32/30a802c3c8ec902e1487024cdea26251
+
+
+
+archlinux-java ------
+use archlinux-java status to view the list of installed 
+java versions and default one; then use archlinux-java set <JAVA_ENV>.
